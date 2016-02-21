@@ -1,2 +1,2 @@
-# nz-road-code-test
-The Road Code Test - New Zealand
+# nz-road-code
+The Road Code Exam - New Zealand
