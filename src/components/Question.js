@@ -12,7 +12,7 @@ const renderAnswer = (key, answer) => (
   </View>
 )
 
-const renderAnswers = (answers: object = {}) =>
+const renderAnswers = (answers = {}) =>
   Object.keys(answers)
         .map((key) => renderAnswer(key, answers[key]))
 

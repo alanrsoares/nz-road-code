@@ -1,14 +1,9 @@
 import { parseProp, parseTags } from './parsers'
+import { withLowerCaseKeys } from './utils'
 
 const ENDPOINT_HOST = 'http://www.aa.co.nz'
 
 const QUESTIONS_ENDPOINT = `${ENDPOINT_HOST}/RoadCodeQuizController/getSet`
-
-const withLowerCaseKeys = obj =>
-  Object.keys(obj).reduce(
-    (acc, key) => ({ ...acc, [key.toLowerCase()]: obj[key] }),
-    {}
-  )
 
 const parseAnswers = answers => {
   const links = parseTags('a', 'g')(answers)
