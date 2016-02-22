@@ -1,6 +1,10 @@
-import React, { Component } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import React, {
+  Component,
+  View,
+  Text
+} from 'react-native'
 
 import Question from '../components/Question'
 import * as Actions from '../actions'
@@ -8,19 +12,19 @@ import * as Actions from '../actions'
 class App extends Component {
   constructor(props) {
     super(props)
-
     props.actions.loadQuestions()
   }
 
   render () {
-    if (!this.props.questions.length) {
-      return (
-        <Question />
-      )
-    }
-
     return (
-      <Question question={this.props.questions[0]}/>
+      <View style={{ flex: 1, alignItems: 'center', marginTop: 20 }}>
+        <View>
+          <Text>The Road Code</Text>
+        </View>
+        <View>
+          <Question {...this.props.questions[0]}/>
+        </View>
+      </View>
     )
   }
 }

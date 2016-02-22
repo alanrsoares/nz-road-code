@@ -4,6 +4,12 @@ const ENDPOINT_HOST = 'http://www.aa.co.nz'
 
 const QUESTIONS_ENDPOINT = `${ENDPOINT_HOST}/RoadCodeQuizController/getSet`
 
+const withLowerCaseKeys = obj =>
+  Object.keys(obj).reduce(
+    (acc, key) => ({ ...acc, [key.toLowerCase()]: obj[key] }),
+    {}
+  )
+
 const parseAnswers = answers => {
   const links = parseTags('a', 'g')(answers)
   const contents = links.map(parseTags('a'))
@@ -23,7 +29,7 @@ const parseImage = image => `${ENDPOINT_HOST}${
 const makeKey = ({ Question, RoadCodePage, CorrectAnswer }) =>
   `${Question}/${RoadCodePage}/${CorrectAnswer}`
 
-const refineQuestion = question => ({
+const refineQuestion = question => withLowerCaseKeys({
   ...question,
   Image: parseImage(question.Image),
   Answers: parseAnswers(question.Answers)

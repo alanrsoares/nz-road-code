@@ -1,4 +1,15 @@
-import React, { AppRegistry } from 'react-native';
-import App from './app/containers/App';
+import React, { AppRegistry } from 'react-native'
+import { Provider } from 'react-redux'
 
-AppRegistry.registerComponent('theRoadCode', () => App);
+import App from './src/containers/App'
+import configure from './src/store'
+
+const store = configure()
+
+const theRoadCode = () => () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
+
+AppRegistry.registerComponent('theRoadCode', theRoadCode)
