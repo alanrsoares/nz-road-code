@@ -6,9 +6,21 @@ import Question from '../components/Question'
 import * as Actions from '../actions'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    props.actions.loadQuestions()
+  }
+
   render () {
+    if (!this.props.questions.length) {
+      return (
+        <Question />
+      )
+    }
+
     return (
-      <Question />
+      <Question question={this.props.questions[0]}/>
     )
   }
 }
