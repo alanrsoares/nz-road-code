@@ -21,7 +21,7 @@ export default ({ image, question, answers }) => (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-start', marginTop: 20 }}>
       <Image
         style={{ height: 200, width: 200 }}
-        source={{ uri: image }}/>
+        source={image}/>
       <View style={{ padding: 10 }}>
         <Text style={{ fontWeight: 'bold' }}>
           {question}
