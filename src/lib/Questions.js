@@ -23,9 +23,6 @@ const parseImage = image => ({
   }`
 })
 
-const makeKey = ({ Question, RoadCodePage, CorrectAnswer }) =>
-  `${Question}/${RoadCodePage}/${CorrectAnswer}`
-
 const refineQuestion = question => withLowerCaseKeys({
   ...question,
   Image: parseImage(question.Image),
