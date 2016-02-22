@@ -6,8 +6,8 @@ import * as questions from '../api/questions'
 
 export function* loadQuestions() {
 	while (yield take(types.LOAD_QUESTIONS)) {
-		yield put(loadQuestions());
 		const results = yield call(questions.get);
-		yield put(loadQuestionsSuccess(results));
+		console.log(results)
+		yield put(actions.loadQuestionsSuccess(results));
 	}
 }
