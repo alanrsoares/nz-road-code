@@ -1,5 +1,5 @@
 import { parseProp, parseTags } from './parsers'
-import { withLowerCaseKeys } from './utils'
+import { withLowerCaseKeys, removeQueryString } from './utils'
 
 const ENDPOINT_HOST = 'http://www.aa.co.nz'
 
@@ -18,7 +18,7 @@ const parseAnswers = answers => {
 }
 
 const parseImage = image => ({
-  uri: `${ENDPOINT_HOST}${parseProp('src')(image).split('?m=')[0]}`
+  uri: removeQueryString(`${ENDPOINT_HOST}${parseProp('src')(image)}`)
 })
 
 const refineQuestion = question => withLowerCaseKeys({
