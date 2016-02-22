@@ -1,0 +1,17 @@
+{
+  "name": "theRoadCode",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react-native": "^0.20.0"
+  },
+  "devDependencies": {
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-actions": "^0.9.1",
+    "redux-saga": "^0.8.2"
+  }
+}
