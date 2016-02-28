@@ -3,66 +3,100 @@ import React, {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ListView
 } from 'react-native'
 
-const renderAnswer = (key, answer) => (
-  <TouchableOpacity key={key} style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', padding: 5 }}>
-    <Text>
-      <Text style={{ fontWeight: 'bold', color: '#363' }}>{key}</Text>: {answer}
-    </Text>
+const dataSource = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1.guid !== r2.guid
+})
+
+const renderAnswer = ({ key, answer }) => (
+  <TouchableOpacity key={key}>
+    <View>
+      <View style={styles.rowContainer}>
+        <Text>
+          <Text style={styles.option}>{key}</Text>: {answer}
+        </Text>
+      </View>
+      <View style={styles.separator}/>
+    </View>
   </TouchableOpacity>
 )
 
-const renderAnswers = (answers = {}) =>
+const toRows = (answers = {}) =>
   Object.keys(answers)
-        .map((key) => renderAnswer(key, answers[key]))
+        .reduce((acc, key) => acc.concat([{ key, 'answer': answers[key] }]), [])
 
 export default ({ image, question, answers }) => (
-  <View style={styles.topContainer}>
-    <View style={styles.topContainer}>
-      <Image
-        style={{ height: 200, width: 200 }}
-        source={image}
-      />
-    <View style={styles.questionContainer}>
-        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-          {question}
-        </Text>
-      </View>
+  <View style={{ flex: 1 }}>
+    <Image
+      style={styles.image}
+      source={image}
+    />
+    <View style={styles.heading}>
+      <Text style={styles.title}>
+        {question}
+      </Text>
     </View>
-    <View style={styles.answersContainer}>
-      {renderAnswers(answers)}
+    <View>
+      {toRows(answers).map(renderAnswer)}
     </View>
-    <View style={styles.topContainer}>
-      <TouchableOpacity style={styles.topContainer}>
-        <Text>Submit Answer</Text>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Submit Answer</Text>
       </TouchableOpacity>
     </View>
   </View>
 )
 
 const styles = StyleSheet.create({
-  topContainer: {
+  heading: {
+    backgroundColor: '#F8F8F8'
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#DDDDDD'
+  },
+  rowContainer: {
+    padding: 10
+  },
+  image: {
+    width: 400,
+    height: 300
+  },
+  option: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 5,
+    color: '#48BBEC'
+  },
+  title: {
+    fontSize: 20,
+    margin: 5,
+    color: '#656565'
+  },
+  description: {
+    fontSize: 18,
+    margin: 5,
+    color: '#656565'
+  },
+  buttonContainer: {
     flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
     alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-    marginHorizontal: 0,
-    borderWidth: 1
-  },
-  questionContainer: {
-    flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start',
-    margin: 10,
-    padding: 10,
-    borderWidth: 1
-  },
-  answersContainer: {
-    alignItems: 'stretch',
-    marginTop: 10
-  },
-  submitButtonContainer: {
-    flex: 1
+    justifyContent: 'center'
   }
 })

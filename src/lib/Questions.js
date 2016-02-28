@@ -32,11 +32,11 @@ const unwrap = res => res.json()
 const refine = data => Promise.resolve(data.map(refineQuestion))
 
 export default class Questions {
-  constructor() {
+  constructor () {
     this.endpoint = QUESTIONS_ENDPOINT
   }
 
-  fetchQuestions() {
+  fetchQuestions () {
     return fetch(this.endpoint)
       .then(unwrap)
       .then(refine)

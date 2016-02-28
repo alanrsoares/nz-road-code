@@ -17,13 +17,8 @@ class App extends Component {
 
   render () {
     return (
-      <View style={{ flex: 1, alignItems: 'center', marginTop: 20 }}>
-        <View>
-          <Text>The Road Code</Text>
-        </View>
-        <View>
-          <Question {...this.props.questions[0]}/>
-        </View>
+      <View style={{ marginTop: 65, flex: 1 }}>
+        <Question {...this.props.questions[0]}/>
       </View>
     )
   }
