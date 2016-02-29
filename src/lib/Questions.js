@@ -1,45 +1,21 @@
-import { parseProp, parseTags } from './parsers'
-import { withLowerCaseKeys, removeQueryString } from './utils'
+import { cache } from 'aa-db/db/db.json'
 
-const ENDPOINT_HOST = 'http://www.aa.co.nz'
-
-const QUESTIONS_ENDPOINT = `${ENDPOINT_HOST}/RoadCodeQuizController/getSet`
-
-const parseAnswers = answers => {
-  const links = parseTags('a', 'g')(answers)
-  const contents = links.map(parseTags('a'))
-  const spans = contents.map(parseTags('span', 'g'))
-  const spanContent = parseTags('span')
-
-  return spans.reduce((acc, [option, content]) => ({
-    ...acc,
-    [spanContent(option)]: spanContent(content).trim()
-  }), {})
-}
-
-const parseImage = image => ({
-  uri: removeQueryString(`${ENDPOINT_HOST}${parseProp('src')(image)}`)
-})
-
-const refineQuestion = question => withLowerCaseKeys({
-  ...question,
-  Image: parseImage(question.Image),
-  Answers: parseAnswers(question.Answers)
-})
-
-const unwrap = res => res.json()
-
-const refine = data => Promise.resolve(data.map(refineQuestion))
+import { randomInt } from './utils'
 
 export default class Questions {
   constructor () {
-    this.endpoint = QUESTIONS_ENDPOINT
+    this.cache = cache
   }
 
-  fetchQuestions () {
-    return fetch(this.endpoint)
-      .then(unwrap)
-      .then(refine)
-      .catch(x => console.log(x))
+  random(length = 30) {
+    const result = []
+    const questions = this.cache.map(x => x.value)
+
+    for (let i = 0; i < length; i++) {
+      const index = randomInt({ max: questions.length - 1 })
+      result.push(...questions.splice(index, 1))
+    }
+
+    return result
   }
 }
