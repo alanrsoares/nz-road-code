@@ -1,12 +1,9 @@
 import { handleActions } from 'redux-actions'
 
 import * as types from '../constants/actionTypes'
+import { get } from '../api/questions'
 
-type question = {
-  
-}
-
-const INITIAL_STATE = []
+const INITIAL_STATE = get()
 
 const actionHandlers = {
   [types.LOAD_QUESTIONS_SUCCESS]: (state, { payload }) => ([
