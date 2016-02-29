@@ -7,26 +7,24 @@ import React, {
   ListView
 } from 'react-native'
 
+import { toRows } from '../lib/utils'
+
 const dataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.guid !== r2.guid
 })
 
-const renderAnswer = ({ key, answer }) => (
+const renderAnswer = ({ key, value }) => (
   <TouchableOpacity key={key}>
     <View>
       <View style={styles.rowContainer}>
         <Text>
-          <Text style={styles.option}>{key}</Text>: {answer}
+          <Text style={styles.option}>{key}</Text>: {value}
         </Text>
       </View>
-      <View style={styles.separator}/>
+      <View style={styles.separator} />
     </View>
   </TouchableOpacity>
 )
-
-const toRows = (answers = {}) =>
-  Object.keys(answers)
-        .reduce((acc, key) => acc.concat([{ key, 'answer': answers[key] }]), [])
 
 export default ({ image, question, answers }) => (
   <View style={{ flex: 1 }}>
