@@ -13,8 +13,8 @@ const dataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.guid !== r2.guid
 })
 
-const renderAnswer = ({ key, value }) => (
-  <TouchableOpacity key={key}>
+const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
+  <TouchableOpacity key={key} onClick={onSelectAnswer(key)}>
     <View>
       <View style={styles.rowContainer}>
         <Text>
@@ -26,7 +26,7 @@ const renderAnswer = ({ key, value }) => (
   </TouchableOpacity>
 )
 
-export default ({ image, question, answers }) => (
+export default ({ image, question, answers, selectedAnswer, onSelectAnswer = () => {} }) => (
   <View style={{ flex: 1 }}>
     <Image
       style={styles.image}
@@ -38,7 +38,7 @@ export default ({ image, question, answers }) => (
       </Text>
     </View>
     <View>
-      {toRows(answers).map(renderAnswer)}
+      {toRows(answers).map(renderAnswer(selectedAnswer, onSelectAnswer))}
     </View>
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.button}>

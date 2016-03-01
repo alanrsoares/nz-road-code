@@ -19,6 +19,8 @@ class Question {
 
 const questions = cache.map(Question.of)
 
+const toMap = xs => xs.reduce((acc, x, i) => ({ ...acc, [i]: x }) , {})
+
 export function randomQuestions (length = 30) {
   const result = []
 
@@ -27,7 +29,7 @@ export function randomQuestions (length = 30) {
     result.push(...questions.splice(index, 1))
   }
 
-  return result
+  return toMap(result)
 }
 
 export default class  QuestionsState {

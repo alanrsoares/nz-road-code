@@ -13,7 +13,8 @@ const actionHandlers = {
     ...payload
   ]),
   [types.SELECT_OPTION]: (state, { payload }) => ({
-    ...state
+    ...state,
+    [payload.index]: state[payload.index].selectAnswer(payload.answer)
   })
 }
 
