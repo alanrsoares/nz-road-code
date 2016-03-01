@@ -13,7 +13,10 @@ const rowStyle = ({ selectedAnswer, key }) =>
   (selectedAnswer === key) && styles.rowContainerSelected
 
 const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
-  <TouchableHighlight key={key} onPress={() => onSelectAnswer({ index: 0, answer: key })}>
+  <TouchableHighlight
+    key={key}
+    underlayColor='#EEEEEE'
+    onPress={() => onSelectAnswer({ index: 0, answer: key })}>
     <View>
       <View style={[styles.rowContainer, rowStyle({ key, selectedAnswer })]}>
         <View style={styles.answerKeyContainer}>
