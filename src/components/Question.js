@@ -35,7 +35,7 @@ export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) =>
   <View style={{ flex: 1 }}>
     <Image style={styles.image} source={image} />
     <View style={styles.heading}>
-      <Text style={styles.title}>
+      <Text style={styles.question}>
        {question}
       </Text>
     </View>
@@ -88,12 +88,7 @@ const styles = StyleSheet.create({
   },
   answer: {
   },
-  title: {
-    fontSize: 20,
-    margin: 5,
-    color: '#656565'
-  },
-  description: {
+  question: {
     fontSize: 18,
     margin: 5,
     color: '#656565'
