@@ -3,41 +3,37 @@ import React, {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity,
-  ListView
+  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native'
 
 import { toRows } from '../lib/utils'
 
-const dataSource = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1.guid !== r2.guid
-})
-
 const rowStyle = ({ selectedAnswer, key }) =>
-  selectedAnswer === key ? styles.rowContainerSelected : styles.rowContainer
+  (selectedAnswer === key) && styles.rowContainerSelected
 
 const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
-  <TouchableOpacity key={key} onPress={() => onSelectAnswer({ index: 0, answer: key })}>
+  <TouchableHighlight key={key} onPress={() => onSelectAnswer({ index: 0, answer: key })}>
     <View>
-      <View style={rowStyle({ key, selectedAnswer })}>
-        <Text>
-          <Text style={styles.answer}>{key}</Text>: {value}
-        </Text>
+      <View style={[styles.rowContainer, rowStyle({ key, selectedAnswer })]}>
+        <View style={styles.answerKeyContainer}>
+          <Text style={styles.answerKey}>{key}</Text>
+        </View>
+        <View style={styles.answerContainer}>
+          <Text style={styles.answer}>{value}</Text>
+        </View>
       </View>
-      <View style={styles.separator} />
+      <View style={styles.separator}/>
     </View>
-  </TouchableOpacity>
+  </TouchableHighlight>
 )
 
 export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) => (
   <View style={{ flex: 1 }}>
-    <Image
-      style={styles.image}
-      source={image}
-    />
+    <Image style={styles.image} source={image} />
     <View style={styles.heading}>
       <Text style={styles.title}>
-        {question}
+       {question}
       </Text>
     </View>
     <View>
@@ -55,25 +51,39 @@ const styles = StyleSheet.create({
   heading: {
     backgroundColor: '#F8F8F8'
   },
+  image: {
+    width: 400,
+    height: 300
+  },
   separator: {
     height: 1,
     backgroundColor: '#DDDDDD'
   },
   rowContainer: {
-    padding: 10
+    padding: 5,
+    flexDirection: 'row'
   },
   rowContainerSelected: {
-    padding: 10,
     backgroundColor: '#DDDDDD'
   },
-  image: {
-    width: 400,
-    height: 300
+  answerKeyContainer: {
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+    marginRight: 5
+  },
+  answerKey: {
+    fontWeight: 'bold',
+    marginHorizontal: 8,
+    marginVertical: 5,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  answerContainer: {
+    flex: 1
   },
   answer: {
-    fontWeight: 'bold',
-    margin: 5,
-    color: '#48BBEC'
   },
   title: {
     fontSize: 20,
