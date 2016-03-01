@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     height: 300
   },
   answer: {
-    fontSize: 20,
     fontWeight: 'bold',
     margin: 5,
     color: '#48BBEC'
