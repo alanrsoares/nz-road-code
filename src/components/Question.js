@@ -8,27 +8,15 @@ import React, {
 } from 'react-native'
 
 import { toRows } from '../lib/utils'
+import Answer from './Answer'
 
-const rowStyle = ({ selectedAnswer, key }) =>
-  (selectedAnswer === key) && styles.rowContainerSelected
-
-const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
-  <TouchableHighlight
-    key={key}
-    underlayColor='#EEEEEE'
-    onPress={() => onSelectAnswer({ index: 0, answer: key })}>
-    <View>
-      <View style={[styles.rowContainer, rowStyle({ key, selectedAnswer })]}>
-        <View style={styles.answerKeyContainer}>
-          <Text style={styles.answerKey}>{key}</Text>
-        </View>
-        <View style={styles.answerContainer}>
-          <Text style={styles.answer}>{value}</Text>
-        </View>
-      </View>
-      <View style={styles.separator}/>
-    </View>
-  </TouchableHighlight>
+const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }, i) => (
+  <Answer
+    key={i}
+    selectedAnswer={selectedAnswer}
+    onSelectAnswer={() => onSelectAnswer({ index: 0, answer: key })}
+    answerKey={key}
+    answerText={value} />
 )
 
 export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) => (
@@ -57,36 +45,6 @@ const styles = StyleSheet.create({
   image: {
     width: 400,
     height: 300
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#DDDDDD'
-  },
-  rowContainer: {
-    padding: 5,
-    flexDirection: 'row'
-  },
-  rowContainerSelected: {
-    backgroundColor: '#DDDDDD'
-  },
-  answerKeyContainer: {
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderRadius: 20,
-    alignSelf: 'flex-start',
-    marginRight: 5
-  },
-  answerKey: {
-    fontWeight: 'bold',
-    marginHorizontal: 8,
-    marginVertical: 5,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  answerContainer: {
-    flex: 1
-  },
-  answer: {
   },
   question: {
     fontSize: 18,
