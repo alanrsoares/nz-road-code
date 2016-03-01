@@ -13,12 +13,15 @@ const dataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.guid !== r2.guid
 })
 
+const rowStyle = ({ selectedAnswer, key }) =>
+  selectedAnswer === key ? styles.rowContainerSelected : styles.rowContainer
+
 const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
-  <TouchableOpacity key={key} onClick={onSelectAnswer(key)}>
+  <TouchableOpacity key={key} onPress={() => onSelectAnswer({ index: 0, answer: key })}>
     <View>
-      <View style={styles.rowContainer}>
+      <View style={rowStyle({ key, selectedAnswer })}>
         <Text>
-          <Text style={styles.option}>{key}</Text>: {value}
+          <Text style={styles.answer}>{key}</Text>: {value}
         </Text>
       </View>
       <View style={styles.separator} />
@@ -26,7 +29,7 @@ const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }) => (
   </TouchableOpacity>
 )
 
-export default ({ image, question, answers, selectedAnswer, onSelectAnswer = () => {} }) => (
+export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) => (
   <View style={{ flex: 1 }}>
     <Image
       style={styles.image}
@@ -59,11 +62,15 @@ const styles = StyleSheet.create({
   rowContainer: {
     padding: 10
   },
+  rowContainerSelected: {
+    padding: 10,
+    backgroundColor: '#DDDDDD'
+  },
   image: {
     width: 400,
     height: 300
   },
-  option: {
+  answer: {
     fontSize: 20,
     fontWeight: 'bold',
     margin: 5,

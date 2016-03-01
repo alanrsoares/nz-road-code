@@ -5,17 +5,18 @@ import { get } from '../api/questions'
 
 const INITIAL_STATE = get()
 
-console.log(INITIAL_STATE)
-
 const actionHandlers = {
   [types.LOAD_QUESTIONS_SUCCESS]: (state, { payload }) => ([
     ...state,
     ...payload
   ]),
-  [types.SELECT_OPTION]: (state, { payload }) => ({
-    ...state,
-    [payload.index]: state[payload.index].selectAnswer(payload.answer)
-  })
+  [types.SELECT_ANSWER]: (state, { payload }) => {
+    console.log(payload)
+    return ({
+      ...state,
+      [payload.index]: state[payload.index].selectAnswer(payload.answer)
+    })
+  }
 }
 
 export default handleActions(actionHandlers, INITIAL_STATE)

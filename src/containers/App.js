@@ -9,10 +9,10 @@ import React, {
 import Question from '../components/Question'
 import * as Actions from '../actions'
 
-const App = ({ questions }) => {
+const App = ({ questions, actions }) => {
   return (
     <View style={{ marginTop: 65, flex: 1 }}>
-      <Question {...questions[0]} />
+      <Question {...questions[0]} onSelectAnswer={actions.selectAnswer} />
     </View>
   )
 }

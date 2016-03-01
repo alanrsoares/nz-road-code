@@ -12,14 +12,14 @@ class Question {
     return new Question(value)
   }
 
-  selectAnswer (selectAnswer) {
+  selectAnswer (selectedAnswer) {
     return new Question({ ...this, selectedAnswer })
   }
 }
 
 const questions = cache.map(Question.of)
 
-const toMap = xs => xs.reduce((acc, x, i) => ({ ...acc, [i]: x }) , {})
+const toMap = xs => xs.reduce((acc, x, i) => ({ ...acc, [i]: x }), {})
 
 export function randomQuestions (length = 30) {
   const result = []
@@ -30,10 +30,4 @@ export function randomQuestions (length = 30) {
   }
 
   return toMap(result)
-}
-
-export default class  QuestionsState {
-  constructor() {
-
-  }
 }
