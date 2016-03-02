@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
   answerKey: {
     fontWeight: 'bold',
-    marginHorizontal: 8,
-    marginVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 2,
     color: 'white',
     alignSelf: 'center'
   },

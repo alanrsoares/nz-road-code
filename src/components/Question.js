@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   buttonText: {
     fontSize: 18,
