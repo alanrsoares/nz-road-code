@@ -1,4 +1,7 @@
-import React, { AppRegistry } from 'react-native'
+import React, {
+  AppRegistry,
+  NavigatorAndroid
+} from 'react-native'
 import { Provider } from 'react-redux'
 
 import App from './src/containers/App'
@@ -8,7 +11,12 @@ const store = configure()
 
 const theRoadCode = () => () => (
   <Provider store={store}>
-    <App />
+    <NavigatorAndroid
+        style={{ flex: 1 }}
+        initialRoute={{
+          title: 'The Road Code',
+          component: App,
+        }}/>
   </Provider>
 )
 

@@ -14,7 +14,7 @@ const theRoadCode = () => () => (
     <NavigatorIOS
         style={{ flex: 1 }}
         initialRoute={{
-          title: 'Road Code',
+          title: 'The Road Code',
           component: App,
         }}/>
   </Provider>
