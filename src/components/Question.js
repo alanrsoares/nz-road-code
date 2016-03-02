@@ -7,6 +7,7 @@ import React, {
 } from 'react-native'
 
 import { toRows } from '../lib/utils'
+import * as colors from '../constants/colors'
 import Answer from './Answer'
 
 const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }, i) => (
@@ -39,16 +40,17 @@ export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) =>
 
 const styles = StyleSheet.create({
   heading: {
-    backgroundColor: '#F8F8F8'
+    backgroundColor: colors.LIGHTER_GRAY
   },
   image: {
     width: 400,
-    height: 300
+    height: 300,
+    alignSelf: 'center'
   },
   question: {
     fontSize: 18,
     margin: 5,
-    color: '#656565'
+    color: colors.MUTED
   },
   buttonContainer: {
     flex: 1,
@@ -62,8 +64,8 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
+    backgroundColor: colors.POSITIVE,
+    borderColor: colors.POSITIVE,
     borderWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'center'

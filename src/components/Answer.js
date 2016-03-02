@@ -5,14 +5,13 @@ import React, {
   TouchableHighlight
 } from 'react-native'
 
+import * as colors from '../constants/colors'
+
 const rowStyle = ({ selectedAnswer, key }) =>
   (selectedAnswer === key) && styles.rowContainerSelected
 
 export default ({ selectedAnswer, onSelectAnswer, answerKey, answerText }) => (
-  <TouchableHighlight
-    key={answerKey}
-    underlayColor='#EEEEEE'
-    onPress={onSelectAnswer}>
+  <TouchableHighlight key={answerKey} underlayColor={colors.LIGHTER_GRAY} onPress={onSelectAnswer}>
     <View>
       <View style={[styles.rowContainer, rowStyle({ key: answerKey, selectedAnswer })]}>
         <View style={styles.answerKeyContainer}>
@@ -30,18 +29,18 @@ export default ({ selectedAnswer, onSelectAnswer, answerKey, answerText }) => (
 const styles = StyleSheet.create({
   separator: {
     height: 1,
-    backgroundColor: '#DDDDDD'
+    backgroundColor: colors.LIGHT_GRAY
   },
   rowContainer: {
     padding: 5,
     flexDirection: 'row'
   },
   rowContainerSelected: {
-    backgroundColor: '#DDDDDD'
+    backgroundColor: colors.LIGHT_GRAY
   },
   answerKeyContainer: {
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
+    backgroundColor: colors.POSITIVE,
+    borderColor: colors.POSITIVE,
     borderRadius: 20,
     alignSelf: 'flex-start',
     marginRight: 5
