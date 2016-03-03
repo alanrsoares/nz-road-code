@@ -7,14 +7,18 @@ import React, {
 
 import * as colors from '../constants/colors'
 
-const rowStyle = ({ selectedAnswer, key }) =>
-  (selectedAnswer === key) && styles.rowContainerSelected
+const rowStyle = isSelected =>
+  isSelected && styles.rowContainerSelected
 
-export default ({ selectedAnswer, onSelectAnswer, answerKey, answerText }) => (
+const correctAnswerStyle = isCorrect =>
+  isCorrect && styles.correctAnswer
+
+export default ({ isSelected, isCorrect, onSelectAnswer, answerKey, answerText }) => (
   <TouchableHighlight key={answerKey} underlayColor={colors.LIGHTER_GRAY} onPress={onSelectAnswer}>
     <View>
-      <View style={[styles.rowContainer, rowStyle({ key: answerKey, selectedAnswer })]}>
-        <View style={styles.answerKeyContainer}>
+      { console.log(answerKey, isSelected, isCorrect) }
+      <View style={[styles.rowContainer, rowStyle(isSelected)]}>
+        <View style={[styles.answerKeyContainer, correctAnswerStyle(isCorrect)]}>
           <Text style={styles.answerKey}>{answerKey}</Text>
         </View>
         <View style={styles.answerContainer}>
@@ -56,5 +60,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   answer: {
+  },
+  correctAnswer: {
+    backgroundColor: '#CFC'
   }
 })

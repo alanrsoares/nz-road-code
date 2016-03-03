@@ -10,16 +10,24 @@ import { toRows } from '../lib/utils'
 import * as colors from '../constants/colors'
 import Answer from './Answer'
 
-const renderAnswer = (selectedAnswer, onSelectAnswer) => ({ key, value }, i) => (
+const renderAnswer = ({ selectedAnswer, onSelectAnswer, correctAnswer }) => ({ key, value }, i) => (
   <Answer
     key={i}
-    selectedAnswer={selectedAnswer}
     onSelectAnswer={() => onSelectAnswer({ index: 0, answer: key })}
     answerKey={key}
-    answerText={value} />
+    answerText={value}
+    isSelected={selectedAnswer === key}
+    isCorrect={selectedAnswer === key && selectedAnswer === correctAnswer} />
 )
 
-export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) => (
+export default ({
+  image,
+  question,
+  answers,
+  correctAnswer,
+  selectedAnswer,
+  onSelectAnswer
+}) => (
   <View style={{ flex: 1 }}>
     <Image style={styles.image} source={image} />
     <View style={styles.heading}>
@@ -28,7 +36,7 @@ export default ({ image, question, answers, selectedAnswer, onSelectAnswer }) =>
       </Text>
     </View>
     <View>
-      {toRows(answers).map(renderAnswer(selectedAnswer, onSelectAnswer))}
+      {toRows(answers).map(renderAnswer({ selectedAnswer, onSelectAnswer, correctAnswer }))}
     </View>
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.button}>

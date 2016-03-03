@@ -10,13 +10,10 @@ const actionHandlers = {
     ...state,
     ...payload
   ]),
-  [types.SELECT_ANSWER]: (state, { payload }) => {
-    console.log(payload)
-    return ({
-      ...state,
-      [payload.index]: state[payload.index].selectAnswer(payload.answer)
-    })
-  }
+  [types.SELECT_ANSWER]: (state, { payload }) => ({
+    ...state,
+    [payload.index]: state[payload.index].selectAnswer(payload.answer)
+  })
 }
 
 export default handleActions(actionHandlers, INITIAL_STATE)
