@@ -4,3 +4,6 @@ export const randomInt = ({ min = 0, max }) =>
 export const toRows = (hashMap = {}) =>
   Object.keys(hashMap)
         .reduce((acc, key) => [...acc, { key, value: hashMap[key] }], [])
+
+export const toMap = xs =>
+  xs.reduce((acc, x, i) => ({ ...acc, [i]: x }), {})

@@ -1,6 +1,6 @@
 import { cache } from 'aa-db/db/db.json'
 
-import { randomInt } from './utils'
+import { randomInt, toMap } from './utils'
 
 class Question {
   constructor (cachedQuestion = {}) {
@@ -18,8 +18,6 @@ class Question {
 }
 
 const questions = cache.map(Question.of)
-
-const toMap = xs => xs.reduce((acc, x, i) => ({ ...acc, [i]: x }), {})
 
 export function randomQuestions (length = 35) {
   const result = []
