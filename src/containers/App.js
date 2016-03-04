@@ -33,7 +33,6 @@ export default connect(
   (dispatch) => ({ actions: bindActionCreators(Actions, dispatch) })
 )(App)
 
-
 const styles = StyleSheet.create({
   subHeader: {
     alignSelf: 'center',
