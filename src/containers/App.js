@@ -18,6 +18,7 @@ const App = ({ questions, position, actions }) => {
         {position + 1}/{keysLength(questions)}
       </Text>
       <Question {...questions[position]}
+        position={position}
         onConfirmAnswer={actions.confirmAnswer}
         onSelectAnswer={actions.selectAnswer}
       />

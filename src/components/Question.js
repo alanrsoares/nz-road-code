@@ -9,43 +9,53 @@ import React, {
 import { toRows } from '../lib/utils'
 import * as colors from '../constants/colors'
 import Answer from './Answer'
+import ConfirmButton from './ConfirmButton'
 
-const renderAnswer = ({ selectedAnswer, onSelectAnswer, correctAnswer }) => ({ key, value }, i) => (
-  <Answer
-    key={i}
-    onSelectAnswer={() => onSelectAnswer({ index: 0, answer: key })}
-    answerKey={key}
-    answerText={value}
-    isSelected={selectedAnswer === key}
-    isCorrect={selectedAnswer === key && selectedAnswer === correctAnswer} />
-)
+export default class Question extends React.Component {
+  constructor (props) {
+    super(props)
+    this.renderAnswer = this.renderAnswer.bind(this)
+  }
 
-export default ({
-  image,
-  question,
-  answers,
-  correctAnswer,
-  selectedAnswer,
-  onSelectAnswer,
-  onConfirmAnswer
-}) => (
-  <View style={{ flex: 1 }}>
-    <Image style={styles.image} source={image} />
-    <View style={styles.heading}>
-      <Text style={styles.question}>
-       {question}
-      </Text>
-    </View>
-    <View>
-      {toRows(answers).map(renderAnswer({ selectedAnswer, onSelectAnswer, correctAnswer }))}
-    </View>
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity style={[styles.button]} onPress={onConfirmAnswer}>
-        <Text style={styles.buttonText}>Submit Answer</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-)
+  render () {
+    const { answers, question, image, selectedAnswer, onConfirmAnswer } = this.props
+
+    return (
+      <View style={{ flex: 1 }}>
+        <Image style={styles.image} source={image} />
+        <View style={styles.heading}>
+          <Text style={styles.question}>
+           {question}
+          </Text>
+        </View>
+        <View>
+          {toRows(answers).map(this.renderAnswer)}
+        </View>
+        <ConfirmButton
+          enabled={selectedAnswer}
+          onPress={onConfirmAnswer}
+        />
+      </View>
+    )
+  }
+
+  renderAnswer ({ key, value }, i) {
+    const { selectedAnswer, onSelectAnswer, correctAnswer, position } = this.props
+
+    console.log(selectedAnswer)
+
+    return (
+      <Answer
+        key={i}
+        onSelectAnswer={() => onSelectAnswer({ index: position, answer: key })}
+        answerKey={key}
+        answerText={value}
+        isSelected={selectedAnswer === key}
+        isCorrect={selectedAnswer === key && selectedAnswer === correctAnswer}
+      />
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   heading: {

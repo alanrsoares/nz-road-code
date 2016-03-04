@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
   answer: {
   },
   correctAnswer: {
-    backgroundColor: '#CFC'
+    backgroundColor: '#6C6'
   }
 })
