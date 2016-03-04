@@ -21,7 +21,7 @@ const questions = cache.map(Question.of)
 
 const toMap = xs => xs.reduce((acc, x, i) => ({ ...acc, [i]: x }), {})
 
-export function randomQuestions (length = 30) {
+export function randomQuestions (length = 35) {
   const result = []
 
   for (let i = 0; i < length; i++) {

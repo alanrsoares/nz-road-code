@@ -5,11 +5,7 @@ import { get } from '../api/questions'
 
 const INITIAL_STATE = get()
 
-const actionHandlers = {
-  [types.LOAD_QUESTIONS_SUCCESS]: (state, { payload }) => ([
-    ...state,
-    ...payload
-  ]),
+export const actionHandlers = {
   [types.SELECT_ANSWER]: (state, { payload }) => ({
     ...state,
     [payload.index]: state[payload.index].selectAnswer(payload.answer)

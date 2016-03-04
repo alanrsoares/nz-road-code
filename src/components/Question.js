@@ -26,7 +26,8 @@ export default ({
   answers,
   correctAnswer,
   selectedAnswer,
-  onSelectAnswer
+  onSelectAnswer,
+  onConfirmAnswer
 }) => (
   <View style={{ flex: 1 }}>
     <Image style={styles.image} source={image} />
@@ -39,7 +40,7 @@ export default ({
       {toRows(answers).map(renderAnswer({ selectedAnswer, onSelectAnswer, correctAnswer }))}
     </View>
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={[styles.button]} onPress={onConfirmAnswer}>
         <Text style={styles.buttonText}>Submit Answer</Text>
       </TouchableOpacity>
     </View>
@@ -67,15 +68,19 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: colors.MUTED,
     alignSelf: 'center'
   },
   button: {
     height: 36,
-    backgroundColor: colors.POSITIVE,
-    borderColor: colors.POSITIVE,
+    backgroundColor: colors.LIGHT_GRAY,
+    borderColor: colors.LIGHT_GRAY,
     borderWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  buttonEnabled: {
+    backgroundColor: colors.POSITIVE,
+    borderColor: colors.POSITIVE,
   }
 })
