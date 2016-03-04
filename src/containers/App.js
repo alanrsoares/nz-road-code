@@ -7,7 +7,7 @@ import React, {
 } from 'react-native'
 
 import Question from '../components/Question'
-import * as Actions from '../actions'
+import * as actions from '../actions'
 
 const keysLength = xs => Object.keys(xs).length
 
@@ -30,7 +30,7 @@ export default connect(
   // map state to props
   (state) => ({ ...state }),
   // map dispatch to props,
-  (dispatch) => ({ actions: bindActionCreators(Actions, dispatch) })
+  (dispatch) => ({ actions: bindActionCreators(actions, dispatch) })
 )(App)
 
 const styles = StyleSheet.create({
