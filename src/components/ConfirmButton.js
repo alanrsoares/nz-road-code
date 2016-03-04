@@ -8,20 +8,15 @@ import React, {
 
 import * as colors from '../constants/colors'
 
-export default class ConfirmButton extends React.Component {
-  render () {
-    const { enabled, onPress } = this.props
-    return (
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, (enabled ? styles.buttonEnabled : {})]}
-          onPress={enabled ? onPress : () => {}}>
-          <Text style={styles.buttonText}>{"Confirm Answer"}</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-}
+export default ({ enabled, onPress }) => (
+  <View style={styles.buttonContainer}>
+    <TouchableOpacity
+      style={[styles.button, (enabled ? styles.buttonEnabled : null)]}
+      onPress={enabled ? onPress : null}>
+      <Text style={styles.buttonText}>{"Confirm Answer"}</Text>
+    </TouchableOpacity>
+  </View>
+)
 
 const styles = StyleSheet.create({
   buttonContainer: {
