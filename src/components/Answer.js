@@ -16,7 +16,6 @@ const correctAnswerStyle = isCorrect =>
 export default ({ isSelected, isCorrect, onSelectAnswer, answerKey, answerText }) => (
   <TouchableHighlight key={answerKey} underlayColor={colors.LIGHTER_GRAY} onPress={onSelectAnswer}>
     <View>
-      { console.log(answerKey, isSelected, isCorrect) }
       <View style={[styles.rowContainer, rowStyle(isSelected)]}>
         <View style={[styles.answerKeyContainer, correctAnswerStyle(isCorrect)]}>
           <Text style={styles.answerKey}>{answerKey}</Text>

@@ -42,8 +42,6 @@ export default class Question extends React.Component {
   renderAnswer ({ key, value }, i) {
     const { selectedAnswer, onSelectAnswer, correctAnswer, position } = this.props
 
-    console.log(selectedAnswer)
-
     return (
       <Answer
         key={i}
