@@ -18,7 +18,7 @@ export default class Question extends React.Component {
   }
 
   render () {
-    const { answers, question, image, selectedAnswer, onConfirmAnswer } = this.props
+    const { answers, question, image, selectedAnswer, correctAnswer, onConfirmAnswer } = this.props
 
     return (
       <View style={{ flex: 1 }}>
@@ -33,7 +33,7 @@ export default class Question extends React.Component {
         </View>
         <ConfirmButton
           enabled={selectedAnswer}
-          onPress={onConfirmAnswer}
+          onPress={ () => onConfirmAnswer({ isCorrect: selectedAnswer === correctAnswer}) }
         />
       </View>
     )
@@ -52,6 +52,10 @@ export default class Question extends React.Component {
         isCorrect={selectedAnswer === key && selectedAnswer === correctAnswer}
       />
     )
+  }
+
+  isCorrectAnswer () {
+    const { selectedAnswer, onSelectAnswer, correctAnswer, position } = this.props
   }
 }
 

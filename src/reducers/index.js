@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import questions from './questions'
-import position from './position'
+import progress from './progress'
 
 export default combineReducers({
 	questions,
-	position
+	progress
 })

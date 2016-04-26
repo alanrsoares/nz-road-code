@@ -11,11 +11,15 @@ import * as actions from '../actions'
 
 const keysLength = xs => Object.keys(xs).length
 
-const App = ({ questions, position, actions }) => {
+const App = ({ questions, progress, actions }) => {
+  let { position, wrongAnswers } = progress
+  let questionsLength = keysLength(questions)
   return (
     <View style={{ marginTop: 65, flex: 1 }}>
       <Text style={styles.subHeader}>
-        {position + 1}/{keysLength(questions)}
+        <Text style={{color: '#f00'}}>Wrong Answers: {wrongAnswers}</Text>
+        { ' - ' }
+        Progress: {position + 1}/{questionsLength}
       </Text>
       <Question {...questions[position]}
         position={position}
@@ -28,9 +32,9 @@ const App = ({ questions, position, actions }) => {
 
 export default connect(
   // map state to props
-  (state) => ({ ...state }),
+  state => ({ ...state }),
   // map dispatch to props,
-  (dispatch) => ({ actions: bindActionCreators(actions, dispatch) })
+  dispatch => ({ actions: bindActionCreators(actions, dispatch) })
 )(App)
 
 const styles = StyleSheet.create({
