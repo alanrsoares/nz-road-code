@@ -19,16 +19,20 @@ const Summary = ({ wrongAnswers, position, questionsLength }) => (
   </Text>
 )
 
+const GameOver = () => (
+  <View>
+    <Text>
+      Cabô, nojento!
+    </Text>
+  </View>
+)
+
 const MainSection = ({ question, position, wrongAnswers, questionsLength, actions }) =>
   (position === questionsLength || wrongAnswers >= 3)
     ? (
-    <View>
-      <Text>
-        Cabô, nojento!
-      </Text>
-    </View>
+    <GameOver />
   ) : (
-    <Question {...question}
+    <Question { ...question }
       position={position}
       onConfirmAnswer={actions.confirmAnswer}
       onSelectAnswer={actions.selectAnswer}
@@ -43,7 +47,7 @@ const App = ({ questions, progress, actions }) => {
 
   return (
     <View style={styles.container}>
-      <Summary {...summaryData}/>
+      <Summary { ...summaryData } />
       <MainSection { ...{ ...summaryData, question, actions } } />
     </View>
   )
