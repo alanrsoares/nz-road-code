@@ -49,7 +49,6 @@ export default class Question extends React.Component {
         answerKey={key}
         answerText={value}
         isSelected={selectedAnswer === key}
-        isCorrect={selectedAnswer === key && selectedAnswer === correctAnswer}
       />
     )
   }

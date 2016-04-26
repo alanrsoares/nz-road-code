@@ -19,17 +19,32 @@ const Summary = ({ wrongAnswers, position, questionsLength }) => (
   </Text>
 )
 
+const MainSection = ({ question, position, wrongAnswers, questionsLength, actions }) =>
+  (position === questionsLength || wrongAnswers >= 3)
+    ? (
+    <View>
+      <Text>
+        Cabô, nojento!
+      </Text>
+    </View>
+  ) : (
+    <Question {...question}
+      position={position}
+      onConfirmAnswer={actions.confirmAnswer}
+      onSelectAnswer={actions.selectAnswer}
+    />
+  )
+
 const App = ({ questions, progress, actions }) => {
   const { position, wrongAnswers } = progress
   const questionsLength = keysLength(questions)
+  const summaryData = { ...progress, questionsLength }
+  const question = questions[position]
+
   return (
     <View style={styles.container}>
-      <Summary {...{...progress, questionsLength}}/>
-      <Question {...questions[position]}
-        position={position}
-        onConfirmAnswer={actions.confirmAnswer}
-        onSelectAnswer={actions.selectAnswer}
-      />
+      <Summary {...summaryData}/>
+      <MainSection { ...{ ...summaryData, question, actions } } />
     </View>
   )
 }
