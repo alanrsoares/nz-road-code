@@ -29,15 +29,12 @@ const GameOver = () => (
 
 const MainSection = ({ question, position, wrongAnswers, questionsLength, actions }) =>
   (position === questionsLength || wrongAnswers >= 3)
-    ? (
-    <GameOver />
-  ) : (
-    <Question { ...question }
-      position={position}
-      onConfirmAnswer={actions.confirmAnswer}
-      onSelectAnswer={actions.selectAnswer}
-    />
-  )
+    ? <GameOver />
+    : <Question { ...question }
+        position={position}
+        onConfirmAnswer={actions.confirmAnswer}
+        onSelectAnswer={actions.selectAnswer}
+      />
 
 const App = ({ questions, progress, actions }) => {
   const { position, wrongAnswers } = progress
