@@ -20,8 +20,8 @@ const Summary = ({ wrongAnswers, position, questionsLength }) => (
 )
 
 const App = ({ questions, progress, actions }) => {
-  let { position, wrongAnswers } = progress
-  let questionsLength = keysLength(questions)
+  const { position, wrongAnswers } = progress
+  const questionsLength = keysLength(questions)
   return (
     <View style={styles.container}>
       <Summary {...{...progress, questionsLength}}/>
