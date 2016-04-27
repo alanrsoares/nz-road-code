@@ -7,7 +7,7 @@ import React, {
 } from 'react-native'
 
 import Question from '../components/Question'
-import * as actions from '../actions'
+import actions from '../actions'
 
 const keysLength = xs => Object.keys(xs).length
 
