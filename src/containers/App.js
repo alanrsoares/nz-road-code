@@ -7,6 +7,7 @@ import React, {
 } from 'react-native'
 
 import Question from '../components/Question'
+import GameOver from '../components/GameOver'
 import actions from '../actions'
 
 const keysLength = xs => Object.keys(xs).length
@@ -17,14 +18,6 @@ const Summary = ({ wrongAnswers, position, questionsLength }) => (
     { ' - ' }
     Progress: {position + 1}/{questionsLength}
   </Text>
-)
-
-const GameOver = () => (
-  <View>
-    <Text>
-      Cabô, nojento!
-    </Text>
-  </View>
 )
 
 const MainSection = ({ question, position, wrongAnswers, questionsLength, actions }) =>
