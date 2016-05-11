@@ -12,11 +12,11 @@ const store = configure()
 const theRoadCode = () => () => (
   <Provider store={store}>
     <NavigatorIOS
-        style={{ flex: 1 }}
-        initialRoute={{
-          title: 'The Road Code',
-          component: App,
-        }}/>
+      style={{ flex: 1 }}
+      initialRoute={{
+        title: 'The Road Code',
+        component: App,
+      }}/>
   </Provider>
 )
 
