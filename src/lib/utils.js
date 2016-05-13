@@ -8,6 +8,8 @@ export const toRows = (hashMap = {}) =>
 export const toMap = xs =>
   xs.reduce((acc, x, i) => ({ ...acc, [i]: x }), {})
 
-export const camelize = s => 
+export const camelize = s =>
   s.toLowerCase()
    .replace(/_\w/g, x => x[1].toUpperCase())
+
+export const keysLength = xs => Object.keys(xs).length

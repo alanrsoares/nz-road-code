@@ -8,17 +8,10 @@ import React, {
 
 import Question from '../components/Question'
 import GameOver from '../components/GameOver'
+import Summary from '../components/Summary'
 import actions from '../actions'
 
-const keysLength = xs => Object.keys(xs).length
-
-const Summary = ({ wrongAnswers, position, questionsLength }) => (
-  <Text style={styles.subHeader}>
-    <Text style={{ color: '#f00' }}>Wrong Answers: {wrongAnswers}</Text>
-    { ' - ' }
-    Progress: {position + 1}/{questionsLength}
-  </Text>
-)
+import { keysLength } from '../lib/utils'
 
 const MainSection = ({ question, position, wrongAnswers, questionsLength, actions }) =>
   (position === questionsLength || wrongAnswers >= 3)
@@ -50,9 +43,5 @@ export default connect(
 )(App)
 
 const styles = StyleSheet.create({
-  container: { marginTop: 65, flex: 1 },
-  subHeader: {
-    alignSelf: 'center',
-    padding: 5
-  }
+  container: { marginTop: 65, flex: 1 }
 })
